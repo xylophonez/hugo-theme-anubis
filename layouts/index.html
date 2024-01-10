@@ -5,10 +5,13 @@
 
     <div class="articles h-feed">
         {{ $pages := where (where site.RegularPages "Type" "in" site.Params.mainSections) "Params.hidden" "!=" true }}
-        {{ range (.Paginate $pages).Pages }}
-            {{ partial "post-summary.html" . }}
-        {{ end }}
+        <div class="row"> <!-- Start of the grid layout -->
+            {{ range (.Paginate $pages).Pages }}
+                <div class="col-md-6"> <!-- Each post-summary in a grid column -->
+                    {{  partial "post-summary.html" . }} 
+                </div>
+            {{ end }}
+        </div>
         {{ partial "pagination.html" . }}
     </div>
-
 {{ end }}

@@ -37,5 +37,11 @@ toAllCategories:
 skipToContent:
   other: "跳至內容"
 
+darkTheme:
+  other: "暗色主題"
+
+lightTheme:
+  other: "亮色主題"
+
 readNext:
   other: "閱讀下一篇"

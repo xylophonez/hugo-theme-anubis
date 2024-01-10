@@ -40,6 +40,12 @@ toAllCategories:
 skipToContent:
   other: "Перейти к основному контенту"
 
+darkTheme:
+  other: "Тёмная тема"
+
+lightTheme:
+  other: "Светлая тема"
+
 readNext:
   other: "Читать далее"
 

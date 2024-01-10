@@ -8,6 +8,7 @@
     {{ end }}
 
     <article class="post h-entry">
+        <a href="#" class="image featured">{{if isset .Params "featured_image" }}<img src="{{ index .Params "featured_image" }}"></a>{{ end }}
         <div class="post-header">
             <header>
                 <h1 class="p-name post-title{{ if .Params.favorite }} favorite{{end}}{{ if .Params.draft }} draft{{end}}">{{ trim .Title  " " | markdownify }}</h1>

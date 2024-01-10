@@ -1,35 +1,37 @@
 {{ define "main" }}
-    <div class="index-content">
-        {{ .Content }}
-    </div>
+<div class="index-content">
+    {{ .Content }}
+</div>
 
-    <div class="articles h-feed">
-        <h1 class="post-title">{{ i18n .Title | markdownify }}</h1>
-        {{ $showFullContent := in .Site.Params.sectionsWithFullContentOnListPage .Section }}
-        {{ $pages := where .Pages "Params.hidden" "!=" true}}
+<div class="articles h-feed">
+    <h1 class="post-title">{{ i18n .Title | markdownify }}</h1>
+    {{ $showFullContent := in .Site.Params.sectionsWithFullContentOnListPage .Section }}
+    {{ $pages := where .Pages "Params.hidden" "!=" true }}
+    {{ $pagesRange := $pages }} <!-- Initialize $pagesRange here -->
 
-        {{ $pagesRange := $pages}}
-        {{ if $showFullContent }}
-            {{ $pagesRange = (.Paginate $pages).Pages }}
-        {{ end}}
+    {{ if $showFullContent }}
+    {{ $pagesRange = (.Paginate $pages).Pages }} <!-- Update $pagesRange if needed -->
+    {{ end }}
 
+    <div class="row">
         {{ range $pagesRange }}
-            <div class="post-short-list h-entry">
-                <div class="post-header">
-                    <header>
-                        <h2 class="p-name post-title{{ if .Params.favorite }} favorite{{end}}{{ if .Params.draft }} draft{{end}}"><a class="u-url" href="{{ .RelPermalink }}">{{ trim .Title " " | markdownify }}</a></h2>
-                        {{ partial "post-language-switcher.html" . }}
-                    </header>
-                </div>
-                {{ if $showFullContent }}
-                    {{ .Content }}
+        <div class="col-md-6">
+            <div class="card">
+                {{ with .Params.image }}
+                <img src="{{ . }}" class="card-img-top" alt="Header image for {{ .Title }}">
                 {{ end }}
-                {{ partial "post-info.html" . }}
+                <div class="card-body">
+                    <h5 class="card-title">{{ trim .Title " " | markdownify }}</h5>
+                    <p class="card-text">{{ .Summary | truncate 100 }}</p>
+                    <a href="{{ .RelPermalink }}" class="btn btn-primary">Read More</a>
+                </div>
             </div>
+        </div>
         {{ end }}
-        {{ if $showFullContent }}
-            {{ partial "pagination.html" . }}
-        {{ end}}
     </div>
 
+    {{ if $showFullContent }}
+    {{ partial "pagination.html" . }}
+    {{ end }}
+</div>
 {{ end }}

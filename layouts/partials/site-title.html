@@ -1,3 +1,11 @@
 <h1 class="site-title">
-    <a href="{{ .Site.BaseURL | relLangURL }}">{{ .Site.Title }}</a>
+
+    <span class="logo-title-container">
+        <a href="https://blog.wvm.dev">
+            <img src="https://www.wvm.dev/_next/image?url=%2Flogo%2FWordmark.png&w=256&q=75" alt="Logo"
+                class="site-logo" />
+        </a>
+        <span class="small-mono">dev blog</span>
+        <a href="{{ .Site.BaseURL | relLangURL }}"></a>
+    </span>
 </h1>
